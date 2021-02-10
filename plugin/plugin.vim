@@ -32,7 +32,7 @@ fun! s:set_maps()
 endfun
 
 call s:def_commands()
-call s:set_maps()
+" call s:set_maps()
 
 let &cpo= s:cpo_bak
 unlet s:cpo_bak
