@@ -1,10 +1,10 @@
 <div align="center">
 <pre>
-'||' '|'     |     '||''|.   '||''''|  '||' '|'
-  || |      |||     ||   ||   ||  .      || |
-   ||      |  ||    ||'''|.   ||''|       ||
-   ||     .''''|.   ||    ||  ||         | ||
-  .||.   .|.  .||. .||...|'  .||.....| .|   ||.
+'||' '|'     |     '||''|.   '||''''|  '||' '|' 
+  || |      |||     ||   ||   ||  .      || |   
+   ||      |  ||    ||'''|.   ||''|       ||    
+   ||     .''''|.   ||    ||  ||         | ||   
+  .||.   .|.  .||. .||...|'  .||.....| .|   ||. 
 
 
 
@@ -68,7 +68,7 @@ Position the cursor on a file and:
   </tr>
   <tr>
     <td>
-
+      
 `1`. The Yabex window
 
 `2`. The alternate window (Ctrl+W p)
@@ -102,7 +102,7 @@ Position the cursor on a file and:
   </tr>
   <tr>
     <td>
-
+      
 `1`. The Yabex window - Current
 
 `2`. The alternate window (Ctrl+W p) – ***And*** current target for e.g. Enter, o etc.
@@ -120,7 +120,6 @@ Position the cursor on a file and:
 </tr>
 </table>
 </p>
-
 
 
 
