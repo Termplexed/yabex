@@ -13,6 +13,10 @@
 "     _|  _|      _|_|_|  _|      _|           _|_|_|      _|_|    _|          "
 "                                                                              "
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" To use DUMP, LLOG etc see:
+" https://github.com/Termplexed/deblog
+"
 " for c in g:Deblog2.boot([], ['LLOG2']) | exe c | endfor
 " for c in g:Deblog2.boot() | exe c | endfor
 " call g:Deblog2.mute(['LLOG2'])
@@ -592,7 +596,7 @@ fun! s:au_write_post()
 	let rebuild = 0
 	let bv = getbufinfo()
 	for bn in s:auv_bufwrite
-		let b = bv[bn]
+		let b = bv[bn - 1]
 		if ! has_key(s:buf_map, bn)
 			let rebuild = 1
 			break
