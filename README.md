@@ -23,7 +23,7 @@
 
 NB! This is experimental and has known bugs and limitations.
 
-Open with `:YabexOpen` or create a map for it. You could uncomment `call s:set_maps()` in `plugin/plugin.vim`
+Open with `:YabexOpen` or create a map for it. You could uncomment `call s:set_maps()` in [`plugin/plugin.vim`](https://github.com/Termplexed/yabex/blob/277053b4f763138f069d8d5824377e8877478e5d/plugin/plugin.vim#L35)
 
 Once open it list all buffers + most hidden.
 
