@@ -121,7 +121,7 @@ let s:ereg = {
 	\ 'Buftype'     : '^[nhw]$',
 	\ 'Bufvar'      : '^[nhw]$' }
 " Note: norm_sort and hidd_sort are dictified in init()
-let s:buf_list = {
+let s:base_buf_list = {
 	\ 'name'     : { 'norm':   't', 'hidd': 't' },
 	\ 'sort'     : { 'norm': 'tIE', 'hidd': 'p' },
 	\ 'fold'     : { 'norm':     0, 'hidd':  0  },
@@ -129,6 +129,7 @@ let s:buf_list = {
 	\ 'order'    : [ 'norm', 'hidd' ],
 	\ 'grouping' : 'g' }
 fun! s:buf_list_init() abort
+	let s:buf_list = deepcopy(s:base_buf_list, 1)
 	" XXX: Changed
 	"# Default List Options:    ------------------------------------------
 	" NEW name { }
