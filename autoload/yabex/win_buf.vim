@@ -18,7 +18,9 @@
 " https://github.com/Termplexed/deblog
 "
 " for c in g:Deblog2.boot([], ['LLOG2']) | exe c | endfor
-" for c in g:Deblog2.boot() | exe c | endfor
+if exists('g:Deblog2')
+	for c in g:Deblog2.boot() | exe c | endfor
+endif
 " call g:Deblog2.mute(['LLOG2'])
 " call g:Deblog2.mute()
 " for c in g:Deblog2.unmute(['LLOG2']) | exe c | endfor
@@ -594,13 +596,17 @@ fun! s:au_write_post()
 		return
 	endif
 	let rebuild = 0
-	let bv = getbufinfo()
 	for bn in s:auv_bufwrite
-		let b = bv[bn - 1]
 		if ! has_key(s:buf_map, bn)
 			let rebuild = 1
 			break
 		endif
+		let b = getbufinfo(bn + 0)
+		if ! len(b)
+			let rebuild = 1
+			break
+		endif
+		let b = b[0]
 		if s:buf_map[bn].c != b.changed
 			let s:buf_map[bn].c = b.changed
 			call s:update_bufline_flag(bn, b.changed)
