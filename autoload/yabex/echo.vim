@@ -26,7 +26,7 @@ fun! s:echo(hi, s, persistent)
 	echohl None
 endfun
 
-" NVim does not support optional arguments so we resort to ...
+" NVim does not support optional arguments so we resort to '...'
 fun! yabex#echo#error(s, ...)
 	call s:echo('ErrorMsg', a:s, a:0 ? a:000[0] : 0)
 endfun
