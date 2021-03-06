@@ -365,17 +365,28 @@ fun! s:mapev.open(m, c) dict
 		call s:win_set_focus(wid_self, wid)
 	endif
 endfun
-fun! s:mapev.bufdel(...) dict
+fun! s:mapev.bufdel(...) dict abort
 	let cur = s:get_bufentry_focused()
-	if cur.state != 0
-		echohl Error
-		echomsg "Unable to delete selected entry"
-		echohl None
-		return
+	if cur.err != ''
+		return yabex#echo#error(
+			\ "Unable to delete selected entry. " . cur.err)
 	endif
-	let bn = bufnr(cur.bufnr)
+	if cur.bufnr == s:state.mybufnr
+		return yabex#echo#error(
+			\ "Can not delete Yabex-buffer from Yabex-Window")
+	endif
+	let bi = getbufinfo(cur.bufnr)[0]
+	if bi.listed == 0 && bi.loaded == 0
+		return yabex#echo#error("Buffer not listed nor loaded.")
+	endif
+	let force = ["", "!"][a:1[0]]
+	if bi.changed && force != "!"
+		return yabex#echo#error(
+			\ "No write since last change for buffer "
+			\ . cur.bufnr . " (add ! to override)")
+	endif
 	for w in reverse(range(1, winnr('$')))
-		if winbufnr(w) != bn
+		if winbufnr(w) != cur.bufnr
 			continue
 		endif
 		exec w . "wincmd w"
@@ -391,13 +402,15 @@ fun! s:mapev.bufdel(...) dict
 		endtry
 
 		" If found a new buffer for this window, mission accomplished:
-		if bufnr("%") != bn
+		if bufnr("%") != cur.bufnr
 			continue
 		endif
-		call bufadd()
+		" No buffers. Add a listed no-name unloaded buffer
+		let nb = bufadd('')
+		exec "b" . nb
 	endfor
 	call s:win_focus_self()
-	exec 'bdelete ' . bn
+	silent exec 'bdelete' . force . " " . cur.bufnr
 	" XXX: Let autocommand catch this
 	" call s:refresh_buflist()
 	" XXX
