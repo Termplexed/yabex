@@ -88,7 +88,11 @@ command! -buffer -nargs=* YabExplore : call yabex#win_buf#mapev('open', 'explore
 command! -buffer -nargs=* YabGitdiff : call yabex#win_buf#mapev('open', 'gitdiff', 'nofocus', <args>)
 command! -buffer -nargs=* YabTerminal : call yabex#win_buf#mapev('open', 'term', 'focus', <args>)
 
-nnoremap <buffer> <silent> <nowait> <del> :call yabex#win#mapev('bufdel')<CR>
+nnoremap <buffer> <silent>  <del> :call yabex#win_buf#mapev('bufdel', 0)<CR>
+nnoremap <buffer> <silent> !<del> :call yabex#win_buf#mapev('bufdel', 1)<CR>
+nnoremap <buffer> <silent>  dd :call yabex#win_buf#mapev('bufdel', 0)<CR>
+nnoremap <buffer> <silent> !dd :call yabex#win_buf#mapev('bufdel', 1)<CR>
+nnoremap <buffer> <silent>  bi :call yabex#win_buf#mapev('dump_bufinfo')<CR>
 
 nmap <buffer> <silent> <nowait> <script> o :<C-U>YabOpen<CR>
 nmap <buffer> <silent> <nowait> <script> <CR> :<C-U>YabOpen<CR>
@@ -96,7 +100,7 @@ nmap <buffer> <silent> <nowait> <script> O :<C-U>YabJopen<CR>
 nmap <buffer> <silent> <nowait> <script> <leader><CR> :<C-U>YabJopen<CR>
 
 nmap <buffer> <silent> <nowait> <script> e :<C-U>YabExplore<CR>
-nmap <buffer> <silent> <nowait> <script> d :<C-U>YabGitdiff<CR>
+nmap <buffer> <silent> <nowait> <script> gd :<C-U>YabGitdiff<CR>
 nmap <buffer> <silent> <nowait> <script> t :<C-U>YabTerminal<CR>
 "nnoremap <buffer> <silent> <expr> w<count>o yabex#win#mapev('testmap', 'wco')
 	" NEW name { }
