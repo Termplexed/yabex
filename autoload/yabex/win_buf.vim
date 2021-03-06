@@ -434,6 +434,12 @@ fun! s:mapev.testmap(...)
 	DUMP v:count1
 	return "\<Ignore>"
 endfun
+fun! s:mapev.dump_bufinfo(...)
+	let cur = s:get_bufentry_focused()
+	let bi = getbufinfo(cur.bufnr)
+	DUMP bi
+	DUMP cur
+endfun
 fun! yabex#win_buf#mapev(act, ...)
 	call s:mapev[a:act](a:000, v:count)
 	return "\<Ignore>"
