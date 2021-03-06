@@ -257,13 +257,18 @@ endfun
 fun! s:get_bufentry_focused()
 	let bl = getline('.')
 	if bl[0] < "A" || bl[0] > "F"
-		return {'state': 1}
+		return {'err': 'Not a file entry'}
 	endif
-	let lv = split('x'.bl, ' \+')
-	if len(lv) > 1 && lv[1] =~ '^\d\+$'
-		return {'line': bl, 'bufnr': str2nr(lv[1]), 'name': lv[2], 'state': 0}
+	let lv = matchlist(bl, '^\(\S\+\)\s\+\(\S\+\)\s\+\(.*\)')
+	if len(lv) > 1 && lv[2] =~ '^\d\+$'
+		return {
+			\ 'line': bl,
+			\ 'tag': lv[1],
+			\ 'bufnr': str2nr(lv[2]),
+			\ 'name': lv[3],
+			\ 'err': ''}
 	else
-		return {'state': 1}
+		return {'err': 'Not a file entry'}
 	endif
 endfun
 let s:mapev = { }
