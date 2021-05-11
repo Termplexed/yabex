@@ -15,7 +15,8 @@
 
 <p align="center">
 <sup>01011001 01000001 01000010 01000101 01011000</sup><br>
-  <img src="https://user-images.githubusercontent.com/66746570/109393991-ebfde280-7924-11eb-818c-7bbb46674f76.png" alt="preview" />
+  <!-- img src="https://user-images.githubusercontent.com/66746570/109393991-ebfde280-7924-11eb-818c-7bbb46674f76.png" alt="preview" / -->
+  <img src="https://raw.githubusercontent.com/Termplexed/res/master/img/yabex-sample-1.png" alt="preview" />
 </p>
 
 ---
